@@ -16,7 +16,7 @@ class MyAccountantState extends State<MyAccountant> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 141, 182, 178),
+      backgroundColor: Colors.grey,
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Image.network(
