@@ -24,14 +24,20 @@ class _MyCadastroState extends State<MyCadastro> {
         child: Column(
           children: [
             const SizedBox(
-              height: 30,
+              height: 40,
             ),
+            Text("Formulário de Cadastro", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             Form(
               key: formKey,
               child: Column(
                 children: [
                   TextFormField(
                     controller: campoRa,
+                    decoration: const InputDecoration(
+                      labelText: "RA",
+                      labelStyle: TextStyle(color: Colors.black), 
+                    ),
+                    focusNode: primaryFocus,
                     //validator retorna string ou null
                     validator: (value) {
                       if (value!.isEmpty){
@@ -46,6 +52,10 @@ class _MyCadastroState extends State<MyCadastro> {
                   ),
                   TextFormField(
                     controller: campoNome,
+                    decoration: const InputDecoration(
+                      labelText: "Nome",
+                      labelStyle: TextStyle(color: Colors.black), 
+                    ),
                     validator: (value) {
                       if(value!.isEmpty){
                         return("O nome não pode ser vazio.");
@@ -60,11 +70,15 @@ class _MyCadastroState extends State<MyCadastro> {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
             ElevatedButton(
               onPressed: (){
                 if(formKey.currentState!.validate()){
                   ra = int.parse(campoRa.text);
                   nome = campoNome.text;
+                  mostrarMsgSucesso();
                   setState(() {
                   
                   });
@@ -72,10 +86,20 @@ class _MyCadastroState extends State<MyCadastro> {
               },
               child: Text("Cadastrar")
             ),
+            const SizedBox(
+              height: 10,
+            ),
             Text("Valores digitados: $ra, $nome"),
           ],
         ) 
       ),
+    );
+  }
+  void mostrarMsgSucesso(){
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Aluno cadastrado com sucesso')
+      )
     );
   }
 }
